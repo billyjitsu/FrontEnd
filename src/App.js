@@ -9,9 +9,9 @@ import NFT from './utils/NFT.json';
 // Constants
 const TWITTER_HANDLE = '1HiveOrg';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = 'https://testnets.opensea.io/collection/mystery-mint-v3';
-const TOTAL_MINT_COUNT = 100;
-const CONTRACT_ADDRESS = "0x861450380ad7099591f2b311b192E72eAdF86E2f";
+const OPENSEA_LINK = 'https://testnets.opensea.io/collection/mystery-agave-mint-v2';
+const TOTAL_MINT_COUNT = 322;
+const CONTRACT_ADDRESS = "0xf3696bB97D5105c5a0Dc03cA0A01B6203502fd7b";
 const App = () => {
 
   
@@ -103,9 +103,9 @@ const App = () => {
 
       
         // This will essentially "capture" our event when our contract throws it.
-        connectedContract.on("WinningMint", (from, prize) => {
-          console.log(from, prize.toNumber())
-          alert(`Hey there! You won!${prize.toNumber()}`)
+        connectedContract.on("WinningMint", (from) => {
+          console.log(from)
+          alert(`Hey, You won a Free Mint!`)
         });
 
         console.log("Setup event listener!")
@@ -129,13 +129,12 @@ const App = () => {
           const provider = new ethers.providers.Web3Provider(ethereum);
           const signer = provider.getSigner();
           const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, NFT.abi, signer);
-         // const agaveContract = new ethers.Contract(AGAVE_ADDRESS, Agave.abi, provider);
+    
 
           console.log("Going to pop wallet now to pay gas...")
-          let payment = String(toMint * .001);
-          //let payment = String(1 * 10 **16);
+          let payment = String(toMint * .1);
           let totalGas = String(toMint * 3000000);
-          let nftTxn = await connectedContract.mint(toMint, { gasLimit: totalGas, value: ethers.utils.parseEther(payment) }); // come back to this
+          let nftTxn = await connectedContract.mint(toMint, { gasLimit: totalGas, value: ethers.utils.parseEther(payment) }); 
   
           console.log("Mining...please wait.")
           await nftTxn.wait();
@@ -201,30 +200,6 @@ const App = () => {
 
   }
 
-  const revealNFT = async () => {
-    try {
-      const { ethereum } = window;
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, NFT.abi, signer);
-
-        let totalMints = await connectedContract.reveal();
-        
-        console.log("NFT should reveal");
-        
-        
-
-      } else {
-        console.log("Ethereum object doesn't exist!");
-      }
-    } catch (error) {
-      console.log(error)
-    }
-
-  }
-
 
   useEffect(() => {
     async function getChainId() {
@@ -261,7 +236,7 @@ const App = () => {
       onChange={e => setToMint(e.target.value)}
       placeHolder="Enter Total Mints"
     ></input>
-    <p className="sub-text">Cost to mint is: 0.001 Eth</p>
+    <p className="sub-text">Cost to mint is: 0.1 Eth</p>
     <p className="sub-text">50% Chance to win minting fee back</p>
     </div>
   );
@@ -301,15 +276,6 @@ const App = () => {
             target="_blank"
             rel="noreferrer"
           >{`🌊 View Collection on OpenSea`}</a></p>
-        </div>
-
-
-        
-
-        <div>
-             <button className="cta-button connect-wallet-button" onClick={revealNFT}>
-             Reveal NFT - admin
-            </button>
         </div>
 
 
