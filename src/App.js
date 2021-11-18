@@ -3,15 +3,16 @@ import { ethers } from 'ethers'
 import twitterLogo from './assets/twitter-logo.svg';
 import React, { useEffect, useState } from "react";
 import NFT from './utils/NFT.json';
-
+import LoadingIndicator from './components/LoadingIndicator';
 
 
 // Constants
 const TWITTER_HANDLE = '1HiveOrg';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = 'https://testnets.opensea.io/collection/mystery-agave-mint-v2';
-const TOTAL_MINT_COUNT = 322;
-const CONTRACT_ADDRESS = "0xf3696bB97D5105c5a0Dc03cA0A01B6203502fd7b";
+const OPENSEA_LINK = 'https://testnets.opensea.io/collection/notthenfbeez-v3';
+const TOTAL_MINT_COUNT = 300;
+//const CONTRACT_ADDRESS = "0xf3696bB97D5105c5a0Dc03cA0A01B6203502fd7b";
+const CONTRACT_ADDRESS = "0x01A357e99F60C362B041e4D406C8B08982220FAf";
 const App = () => {
 
   
@@ -19,6 +20,7 @@ const App = () => {
   const [chainId, setChainId] = useState(window.ethereum.request({ method: 'eth_chainId' }));
   const [mintTotal, setMintTotal] = useState(0);
   const [toMint, setToMint] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const checkIfWalletIsConnected = async () => {
     /*
@@ -135,10 +137,12 @@ const App = () => {
           let payment = String(toMint * .1);
           let totalGas = String(toMint * 3000000);
           let nftTxn = await connectedContract.mint(toMint, { gasLimit: totalGas, value: ethers.utils.parseEther(payment) }); 
-  
+          
+          setLoading(true);
           console.log("Mining...please wait.")
           await nftTxn.wait();
           
+          setLoading(false);
           console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`);
   
         } else {
@@ -237,7 +241,13 @@ const App = () => {
       placeHolder="Enter Total Mints"
     ></input>
     <p className="sub-text">Cost to mint is: 0.1 Eth</p>
-    <p className="sub-text">50% Chance to win minting fee back</p>
+    <p className="sub-text">Chance to win minting fee back!</p>
+    {loading && 
+      <div>
+        <LoadingIndicator/>
+        <p className="loading">Loading in progress...</p>
+      </div>
+      }
     </div>
   );
 
@@ -246,7 +256,7 @@ const App = () => {
     <div className="App">
       <div className="container">
         <div className="header-container">
-          <p className="header gradient-text">1Hive's Bee NFT Mint Shop</p>
+          <p className="header gradient-text">The NFBeez</p>
           <p className="sub-text">
             A Collection of Bees. Each one unique.  Mint yours now.
           </p>
@@ -267,6 +277,10 @@ const App = () => {
             </div>
         </div>
         )}
+
+        <div>
+          <img src="https://ipfs.io/ipfs/QmVumjMciDac8S4AeAzSSMLmsCWjuAYSZ2ePUEbEsjgMwd/1.gif" alt="IPFS" width="200"/>
+        </div>
           
         <div>
           <p className="sub-text">
@@ -286,7 +300,7 @@ const App = () => {
             href={TWITTER_LINK}
             target="_blank"
             rel="noreferrer"
-          >{`built by the 1hive Community`}</a>
+          >{`built by the members of the 1hive Community`}</a>
         </div>
       </div>
     </div>
