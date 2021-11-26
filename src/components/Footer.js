@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Logo from "../assets/1hiveFullLogo.svg";
 import { navLinks } from "../data/navLinks";
 
