@@ -76,28 +76,6 @@ const ArtistGallery = () => {
             <img src={Bee} alt={`${data.name}'s best bee`} />
           </Card>
         ))}
-      {artists.length !== 0 &&
-        artists.map((data) => (
-          <Card key={data.name + data.community}>
-            <ArtistInfo>
-              <h3>{data.name}</h3>
-              <p>{data.bio}</p>
-              <ArtistLinks>
-                <a
-                  href={data.marketplaceUrl}
-                  rel={"noreferrer"}
-                  target="_blank"
-                >
-                  <Button>Marketplace</Button>
-                </a>
-                <a href={data.portfolioUrl} rel={"noreferrer"} target="_blank">
-                  <Button>Portfolio</Button>
-                </a>
-              </ArtistLinks>
-            </ArtistInfo>
-            <img src={Bee} alt={`${data.name}'s best bee`} />
-          </Card>
-        ))}
     </Gallery>
   );
 };

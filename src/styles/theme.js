@@ -22,6 +22,8 @@ const grey = "#979797";
 const greyLight = "#C8C8C9";
 const greyLightest = "#E9E9E9";
 const greyBasic = "#F1F1F1";
+const rainbow =
+  "linear-gradient(112.02deg, #B0ECE6 -52.44%, #C6F8E3 3.69%, #FFD7C7 60.24%, #FFF19F 97.59%, #F7F7C3 128.54%, #FCFCEB 152.44%)";
 
 export const theme = {
   colors: {
@@ -46,6 +48,7 @@ export const theme = {
     greyLight,
     greyLightest,
     greyBasic,
+    rainbow,
   },
   fontSizes: {
     // based on typical browser default font size of 16px

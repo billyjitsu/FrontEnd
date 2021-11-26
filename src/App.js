@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import ArtistGallery from "./components/ArtistGallery";
+import MintButton from "./components/Minter";
 
 const Main = styled.main`
   padding: 4rem;
@@ -35,6 +36,7 @@ const App = () => {
             dictumst vel vitae cras morbi cursus in. Et sapien, eget fringilla
             quis gravida ligula.
           </p>
+          <MintButton />
         </Hero>
         <ArtistGallery />
       </Main>
