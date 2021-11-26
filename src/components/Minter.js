@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { Button } from "./Button";
 
@@ -43,9 +44,20 @@ const MintButton = styled(Button)`
 `;
 
 const Minter = () => {
+  const [mintTotal, setMintTotal] = useState(1);
+
+  const handleChange = (e) => {
+    setMintTotal(e.target.value);
+  };
+
   return (
     <Mint>
-      <MintNumInput placeholder="# of NFTs" min="1"></MintNumInput>
+      <MintNumInput
+        placeholder="# of NFTs"
+        min="1"
+        name="mintTotal"
+        onChange={handleChange}
+      ></MintNumInput>
       <MintButton>Mint NFTs</MintButton>
     </Mint>
   );

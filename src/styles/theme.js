@@ -73,6 +73,7 @@ export const GlobalStyle = createGlobalStyle`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: ${(p) => p.theme.fontSizes.m};
+  overflow-x: hidden;
 }
 body{
     background-color: ${(p) => p.theme.colors.turquoiseLightest};
@@ -82,6 +83,19 @@ body{
     background-size: cover;
     font-family: 'Ubuntu',sans-serif;
     color: ${(p) => p.theme.colors.greyDark};
+    ::-webkit-scrollbar {
+    width: 1em;
+    background-color: ${(p) => p.theme.colors.creamLightest};
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: ${(p) => p.theme.colors.greenBase};
+        border-radius: 10px;
+    }
     
 }
 

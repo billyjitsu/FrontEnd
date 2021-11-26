@@ -7,6 +7,7 @@ import Minter from "./components/Minter";
 
 const Main = styled.main`
   padding: 4rem;
+
   section {
     margin-bottom: 4rem;
     :last-of-type {

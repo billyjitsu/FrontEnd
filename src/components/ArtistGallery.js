@@ -24,6 +24,9 @@ const Card = styled.article`
   img {
     width: 15rem;
   }
+  a {
+    color: ${(p) => p.theme.colors.greyMedium};
+  }
 `;
 
 const ArtistInfo = styled.div`
@@ -59,6 +62,9 @@ const ArtistGallery = () => {
           <Card key={data.name + data.community}>
             <ArtistInfo>
               <h3>{data.name}</h3>
+              <a href={data.communityUrl} rel={"noreferrer"} target="_blank">
+                {data.community}
+              </a>
               <p>{data.bio}</p>
               <ArtistLinks>
                 <a
