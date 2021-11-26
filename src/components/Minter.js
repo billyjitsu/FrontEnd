@@ -5,13 +5,17 @@ import { Button } from "./Button";
 const Mint = styled.form`
   background: ${(p) => p.theme.colors.rainbow};
   border-radius: 50px;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: fit-content;
+
   margin: 0;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    width: 100%;
+  }
 `;
 
 const MintNumInput = styled.input.attrs((props) => ({
@@ -32,6 +36,12 @@ const MintNumInput = styled.input.attrs((props) => ({
     border: solid 2px ${(p) => p.theme.colors.salmonBase};
   }
   margin-right: 1rem;
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    padding: 0.5rem 0.75rem;
+    font-weight: 400;
+    white-space: nowrap;
+    margin-right: 0.5rem;
+  }
 `;
 
 const MintButton = styled(Button)`
@@ -40,6 +50,11 @@ const MintButton = styled(Button)`
   background-color: ${(p) => p.theme.colors.greenBase};
   :hover {
     background-color: ${(p) => p.theme.colors.greenLight};
+  }
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    padding: 0.7rem 1rem;
+    font-weight: 400;
+    white-space: nowrap;
   }
 `;
 

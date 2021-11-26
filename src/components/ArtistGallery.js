@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { artists } from "../data/artists";
 import { Button } from "./Button";
-import Bee from "./../assets/bees/artist1.png";
+import Bee from "../assets/bees/artist1.png";
 
 const Gallery = styled.section`
   width: 100%;
@@ -16,16 +16,30 @@ const Card = styled.article`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 32px;
+  padding: 2rem;
   border-radius: 16px;
   max-width: 800px;
-  background: ${(p) => p.theme.colors.creamLightest};
+  background: ${(p) => p.theme.colors.white};
   margin: 1rem;
+  box-shadow: ${(p) => p.theme.boxShadow.low};
+  :hover {
+    box-shadow: ${(p) => p.theme.boxShadow.medium};
+  }
   img {
-    width: 15rem;
+    width: 30rem;
   }
   a {
     color: ${(p) => p.theme.colors.greyMedium};
+  }
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    align-items: center;
+    padding: 1rem;
+    margin: 0 0 1rem 0;
+    flex-direction: column-reverse;
+    max-width: 100%;
+    img {
+      width: 15rem;
+    }
   }
 `;
 
@@ -36,6 +50,15 @@ const ArtistInfo = styled.div`
   h3 {
     margin: 0;
   }
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    align-items: center;
+    h3 {
+      margin-top: 1rem;
+    }
+    p {
+      width: 100%;
+    }
+  }
 `;
 
 const ArtistLinks = styled.div`
@@ -44,10 +67,20 @@ const ArtistLinks = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    flex-direction: column;
+  }
 
   button {
     :first-of-type {
       margin-right: 1rem;
+    }
+    @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+      width: 100%;
+      margin-right: 0;
+      :first-of-type {
+        margin-bottom: 0.5rem;
+      }
     }
   }
 `;

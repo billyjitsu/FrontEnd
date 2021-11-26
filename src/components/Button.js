@@ -11,6 +11,9 @@ export const Button = styled.button.attrs((props) => ({
   color: ${(p) => p.theme.colors.greyDark};
   transition: all 0.3s ease;
   font-weight: bold;
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    padding: 0.5rem 1rem;
+  }
   :hover {
     color: ${(p) => p.theme.colors.greyDark};
     background-color: ${(p) => p.theme.colors.yellowLight};

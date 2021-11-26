@@ -24,6 +24,8 @@ const greyLightest = "#E9E9E9";
 const greyBasic = "#F1F1F1";
 const rainbow =
   "linear-gradient(112.02deg, #B0ECE6 -52.44%, #C6F8E3 3.69%, #FFD7C7 60.24%, #FFF19F 97.59%)";
+const shadowColour = "286deg 36% 56%";
+const white = "#FEFEFE";
 
 export const theme = {
   colors: {
@@ -49,6 +51,7 @@ export const theme = {
     greyLightest,
     greyBasic,
     rainbow,
+    white,
   },
   fontSizes: {
     // based on typical browser default font size of 16px
@@ -65,6 +68,23 @@ export const theme = {
     m: "768px",
     l: "1024px",
     xl: "1440px", // Used as the max-width
+  },
+  boxShadow: {
+    low: `0.3px 0.5px 0.6px hsl(${shadowColour} / 0.41)
+    0.4px 0.8px 0.9px -1.5px hsl(${shadowColour} / 0.37)
+    1px 2px 2.3px -3px hsl(${shadowColour} / 0.32)`,
+    medium: `0.3px 0.5px 0.6px hsl(${shadowColour} / 0.41)
+  0.7px 1.5px 1.7px -1px hsl(${shadowColour} / 0.37)
+  2px 3.9px 4.6px -2px hsl(${shadowColour} / 0.32)
+  5px 10px 11.7px -3px hsl(${shadowColour} / 0.32)`,
+    high: `0.3px 0.5px 0.6px hsl(${shadowColour} / 0.41)
+  1.2px 2.5px 2.9px -0.4px hsl(${shadowColour} / 0.37)
+  2.3px 4.7px 5.5px -0.9px hsl(${shadowColour} / 0.32)
+  4px 8px 9.4px -1.3px hsl(${shadowColour} / 0.32)
+  6.7px 13.4px 15.7px -1.7px hsl(${shadowColour} / 0.32)
+  10.8px 21.6px 25.4px -2.1px hsl(${shadowColour} / 0.32)
+  16.7px 33.5px 39.3px -2.6px hsl(${shadowColour} / 0.32)
+  25px 50px 58.7px -3px hsl(${shadowColour} / 0.32)`,
   },
 };
 
@@ -87,6 +107,7 @@ body{
     width: 1em;
     background-color: ${(p) => p.theme.colors.creamLightest};
     }
+    font-size: 16px;
 
     ::-webkit-scrollbar-track {
         box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
@@ -99,6 +120,10 @@ body{
     
 }
 
+p{
+  line-height: 1.5rem;
+}
+
 a{
   text-decoration: none;
   font-family: Ubuntu;
@@ -106,28 +131,25 @@ a{
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0.06em;
-}
-
-/* unvisited link */
-a:link {
+  /* unvisited link */
+  :link {
   color: ${(p) => p.theme.colors.greyDark};
+  }
+  /* visited link */
+  :visited {
+    color: ${(p) => p.theme.colors.greyDark + 80};
+  }
+  /* mouse over link */
+  :hover {
+    color: ${(p) => p.theme.colors.greyMedium};
+  }
+  /* selected link */
+  :active {
+    color: ${(p) => p.theme.colors.greyMedium};
+    font-weight: bold;
+  }
 }
 
-/* visited link */
-a:visited {
-  color: ${(p) => p.theme.colors.greyDark + 80};
-}
-
-/* mouse over link */
-a:hover {
-  color: ${(p) => p.theme.colors.greyMedium};
-}
-
-/* selected link */
-a:active {
-  color: ${(p) => p.theme.colors.greyMedium};
-  font-weight: bold;
-}
 
 h1 {
     font-size: 3rem;
