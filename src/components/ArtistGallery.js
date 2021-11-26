@@ -26,19 +26,19 @@ const Card = styled.article`
     box-shadow: ${(p) => p.theme.boxShadow.medium};
   }
   img {
-    width: 30rem;
+    width: 24rem;
   }
   a {
     color: ${(p) => p.theme.colors.greyMedium};
   }
   @media (max-width: ${(props) => props.theme.breakpoints.m}) {
     align-items: center;
-    padding: 1rem;
+    padding: 0.5rem;
     margin: 0 0 1rem 0;
     flex-direction: column-reverse;
     max-width: 100%;
     img {
-      width: 15rem;
+      width: 10rem;
     }
   }
 `;
@@ -52,6 +52,7 @@ const ArtistInfo = styled.div`
   }
   @media (max-width: ${(props) => props.theme.breakpoints.s}) {
     align-items: center;
+    padding: 1rem;
     h3 {
       margin-top: 1rem;
     }
@@ -62,7 +63,7 @@ const ArtistInfo = styled.div`
   @media (max-width: ${(props) => props.theme.breakpoints.m}) {
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 1rem;
   }
 `;
 

@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Logo from "../assets/1hiveFullLogo.svg";
 import { Button } from "./Button";
+import { navLinks } from "../data/navLinks";
 
 export const SocialLinks = styled.ul`
   display: flex;
@@ -70,24 +71,14 @@ export default function Nav() {
     <header>
       <NavContainer>
         <SocialLinks>
-          <li>
-            <a
-              href="https://twitter.com/1HiveOrg"
-              rel={"noreferrer"}
-              target="_blank"
-            >
-              Twitter
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://discord.gg/4fm7pgB"
-              rel={"noreferrer"}
-              target="_blank"
-            >
-              Discord
-            </a>
-          </li>
+          {navLinks.length !== 0 &&
+            navLinks.map((link) => (
+              <li>
+                <a href={link.url} rel={"noreferrer"} target="_blank">
+                  {link.siteName}
+                </a>
+              </li>
+            ))}
         </SocialLinks>
         <img src={Logo} alt="1hive-full-logo" />
         <NavButton>Connect Wallet</NavButton>

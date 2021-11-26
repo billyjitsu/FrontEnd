@@ -6,11 +6,7 @@ import ArtistGallery from "./components/ArtistGallery";
 import Minter from "./components/Minter";
 
 const Main = styled.main`
-  padding: 4rem;
-  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
-    max-width: 100%;
-    padding: 0.5rem;
-  }
+  padding: clamp(0.5rem, 2rem, 4rem);
   section {
     margin-bottom: 4rem;
     :last-of-type {

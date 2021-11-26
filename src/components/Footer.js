@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Logo from "../assets/1hiveFullLogo.svg";
+import { navLinks } from "../data/navLinks";
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -38,38 +39,27 @@ const LinkContainer = styled.div`
       margin-right: 0.2rem;
     }
   }
-  @media (max-width: ${(props) =>
-      props.theme.breakpoints.xl}) and (min-width: ${(props) =>
-      props.theme.breakpoints.m}) {
-    :first-of-type {
-      display: none;
-    }
+`;
+
+const DisappearOnMobile = styled(LinkContainer)`
+  @media (min-width: ${(props) => props.theme.breakpoints.m}) {
+    display: none;
   }
 `;
 
 export default function Footer() {
   return (
     <FooterContainer>
-      <LinkContainer>
-        <li>
-          <a
-            href="https://twitter.com/1HiveOrg"
-            rel={"noreferrer"}
-            target="_blank"
-          >
-            Twitter
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://discord.gg/4fm7pgB"
-            rel={"noreferrer"}
-            target="_blank"
-          >
-            Discord
-          </a>
-        </li>
-      </LinkContainer>
+      <DisappearOnMobile>
+        {navLinks.length !== 0 &&
+          navLinks.map((link) => (
+            <li>
+              <a href={link.url} rel={"noreferrer"} target="_blank">
+                {link.siteName}
+              </a>
+            </li>
+          ))}
+      </DisappearOnMobile>
       <LinkContainer>
         <p>Built by</p>{" "}
         <a href="https://1Hive.org" rel={"noreferrer"} target="_blank">
