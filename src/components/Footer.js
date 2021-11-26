@@ -38,6 +38,13 @@ const LinkContainer = styled.div`
       margin-right: 0.2rem;
     }
   }
+  @media (max-width: ${(props) =>
+      props.theme.breakpoints.xl}) and (min-width: ${(props) =>
+      props.theme.breakpoints.m}) {
+    :first-of-type {
+      display: none;
+    }
+  }
 `;
 
 export default function Footer() {
