@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
-const Container = styled.main`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 4rem;
+const Container = styled.body`
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 `;
 
 export default function Layout({ children }) {

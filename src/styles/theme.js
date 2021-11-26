@@ -75,8 +75,10 @@ body{
     background-color: ${(p) => p.theme.colors.turquoiseLightest};
     background: url(${Background});
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
     font-family: 'Ubuntu',sans-serif;
+    color: ${(p) => p.theme.colors.greyDark};
     
 }
 
@@ -84,10 +86,30 @@ a{
   text-decoration: none;
   font-family: Ubuntu;
   font-style: normal;
-  font-weight: bold;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0.06em;
+}
+
+/* unvisited link */
+a:link {
+  color: ${(p) => p.theme.colors.greyDark};
+}
+
+/* visited link */
+a:visited {
+  color: ${(p) => p.theme.colors.greyDark + 80};
+}
+
+/* mouse over link */
+a:hover {
+  color: ${(p) => p.theme.colors.greyMedium};
+}
+
+/* selected link */
+a:active {
+  color: ${(p) => p.theme.colors.greyMedium};
+  font-weight: bold;
 }
 
 h1 {

@@ -6,8 +6,6 @@ import Layout from "./components/Layout";
 import Nav from "./components/Nav";
 
 // Constants
-const TWITTER_HANDLE = "1HiveOrg";
-const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = "https://testnets.opensea.io/collection/notthenfbeez-v3";
 const TOTAL_MINT_COUNT = 300;
 //const CONTRACT_ADDRESS = "0xf3696bB97D5105c5a0Dc03cA0A01B6203502fd7b";

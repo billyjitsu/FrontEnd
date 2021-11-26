@@ -7,7 +7,7 @@ const SocialLinks = styled.ul`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 1rem;
+  padding-left: 2rem;
   list-style: none;
   li {
     text-decoration: none;
@@ -15,6 +15,13 @@ const SocialLinks = styled.ul`
   }
   a {
     color: ${(p) => p.theme.colors.greyDark};
+    :hover {
+      color: ${(p) => p.theme.colors.greyMedium};
+    }
+  }
+
+  img {
+    height: 2rem;
   }
 `;
 
@@ -32,7 +39,7 @@ const NavContainer = styled.nav`
 `;
 
 const NavButton = styled(Button)`
-  margin-right: 1rem;
+  margin-right: 2rem;
 `;
 
 export default function Nav() {

@@ -8,9 +8,6 @@ const FooterContainer = styled.footer`
   align-items: flex-end;
   padding: 1rem 2rem;
   background: ${(p) => p.theme.colors.greenLightest + `40`};
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
   p {
     margin: 0;
