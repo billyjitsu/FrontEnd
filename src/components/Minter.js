@@ -1,15 +1,22 @@
 import styled from "styled-components";
 import { Button } from "./Button";
 
-const Mint = styled.div`
+const Mint = styled.form`
   background: ${(p) => p.theme.colors.rainbow};
-  border-radius: 4rem;
-  padding: 0.5rem;
+  border-radius: 50px;
+  padding: 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0;
 `;
 
 const MintNumInput = styled.input.attrs((props) => ({
   type: "number",
 }))`
+  max-width: 6rem;
   border-radius: 50px 0px 0px 50px;
   outline: none;
   padding: 0.75rem 1rem;
@@ -28,6 +35,7 @@ const MintNumInput = styled.input.attrs((props) => ({
 
 const MintButton = styled(Button)`
   border-radius: 0px 50px 50px 0px;
+  padding: 0.75rem 1.5rem;
   background-color: ${(p) => p.theme.colors.greenBase};
   :hover {
     background-color: ${(p) => p.theme.colors.greenLight};
@@ -37,7 +45,7 @@ const MintButton = styled(Button)`
 const Minter = () => {
   return (
     <Mint>
-      <MintNumInput placeholder="# of NFTs"></MintNumInput>
+      <MintNumInput placeholder="# of NFTs" min="1"></MintNumInput>
       <MintButton>Mint NFTs</MintButton>
     </Mint>
   );
