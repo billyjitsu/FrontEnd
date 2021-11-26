@@ -31,7 +31,7 @@ const Card = styled.article`
   a {
     color: ${(p) => p.theme.colors.greyMedium};
   }
-  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+  @media (max-width: ${(props) => props.theme.breakpoints.m}) {
     align-items: center;
     padding: 1rem;
     margin: 0 0 1rem 0;
@@ -59,6 +59,11 @@ const ArtistInfo = styled.div`
       width: 100%;
     }
   }
+  @media (max-width: ${(props) => props.theme.breakpoints.m}) {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
 `;
 
 const ArtistLinks = styled.div`
@@ -67,15 +72,14 @@ const ArtistLinks = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
-    flex-direction: column;
-  }
-
   button {
     :first-of-type {
       margin-right: 1rem;
     }
-    @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+  }
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    flex-direction: column;
+    button {
       width: 100%;
       margin-right: 0;
       :first-of-type {

@@ -64,7 +64,7 @@ export const theme = {
   },
   breakpoints: {
     xs: "320px",
-    s: "414px",
+    s: "425px",
     m: "768px",
     l: "1024px",
     xl: "1440px", // Used as the max-width
