@@ -53,6 +53,7 @@ const ArtistGallery = () => {
   console.log(artists[1].artist);
   return (
     <Gallery>
+      <h2>Artists</h2>
       {artists.length !== 0 &&
         artists.map((data) => (
           <Card key={data.name + data.community}>
