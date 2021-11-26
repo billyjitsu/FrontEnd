@@ -47,7 +47,7 @@ const NavContainer = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background: ${(p) => p.theme.colors.greenLightest + `40`};
+  background: ${(p) => p.theme.colors.creamLightest + `60`};
   position: fixed;
   left: 0;
   top: 0;
