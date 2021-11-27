@@ -6,10 +6,11 @@ import { Button } from "../Button";
 const WalletAddress = () => {
   const [account, setAccount] = useState("");
   const [wrongNetwork, setWrongNetwork] = useState(false);
-  const networkChainId = 4;
+  const networkChainId = 4; //currently set to rinkeby
   let address = useStore((state) => state?.walletAddress);
   const addAddress = useStore((state) => state.addWalletAddress);
 
+  //on page load, check if user has metamask, and check if there is wallet address saved
   useEffect(() => {
     const checkForEthereum = () => {
       const { ethereum } = window;
@@ -24,7 +25,7 @@ const WalletAddress = () => {
     checkForEthereum();
     checkForWalletAddress();
   }, []);
-
+  //checks for wallet address saved
   const checkForWalletAddress = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     console.log(address, "fromz");
@@ -48,7 +49,7 @@ const WalletAddress = () => {
       }
     }
   };
-
+  //connects user to metamask to add address
   const connectWallet = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     let address = await window.ethereum.request({
@@ -66,7 +67,7 @@ const WalletAddress = () => {
       setWrongNetwork(true);
     }
   };
-
+  //connects to the right network
   const connectToXDai = async () => {
     await window.ethereum.request({
       method: "wallet_switchEthereumChain",
@@ -75,6 +76,7 @@ const WalletAddress = () => {
     setWrongNetwork(false);
   };
 
+  //scrolls user to the area where mint input is
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

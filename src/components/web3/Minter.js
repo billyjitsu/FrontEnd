@@ -14,9 +14,9 @@ const Mint = styled.form`
 
   margin: 0;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+  /* @media (max-width: ${(props) => props.theme.breakpoints.s}) {
     width: 100%;
-  }
+  } */
 `;
 
 const MintNumInput = styled.input.attrs((props) => ({
@@ -37,11 +37,12 @@ const MintNumInput = styled.input.attrs((props) => ({
     border: solid 2px ${(p) => p.theme.colors.salmonBase};
   }
   margin-right: 1rem;
-  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+  @media (max-width: ${(props) => props.theme.breakpoints.m}) {
     padding: 0.5rem 0.75rem;
     font-weight: 400;
     white-space: nowrap;
     margin-right: 0.5rem;
+    width: 75px;
   }
 `;
 
@@ -52,8 +53,8 @@ const MintButton = styled(Button)`
   :hover {
     background-color: ${(p) => p.theme.colors.greenLight};
   }
-  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
-    padding: 0.7rem 1rem;
+  @media (max-width: ${(props) => props.theme.breakpoints.m}) {
+    padding: 0.6rem 0.5rem;
     font-weight: 400;
     white-space: nowrap;
   }
