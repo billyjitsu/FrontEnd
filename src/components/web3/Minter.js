@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { ethers } from "ethers";
 import styled from "styled-components";
-import { Button } from "./Button";
+import { Button } from "../Button";
 
 const Mint = styled.form`
   background: ${(p) => p.theme.colors.rainbow};

@@ -53,8 +53,13 @@ export default function Footer() {
       <DisappearOnMobile>
         {navLinks.length !== 0 &&
           navLinks.map((link) => (
-            <li>
-              <a href={link.url} rel={"noreferrer"} target="_blank">
+            <li key={navLinks.siteName}>
+              <a
+                href={link.url}
+                rel={"noreferrer"}
+                target="_blank"
+                key={navLinks.siteName}
+              >
                 {link.siteName}
               </a>
             </li>

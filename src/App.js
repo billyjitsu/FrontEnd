@@ -3,7 +3,7 @@ import Layout from "./components/Layout";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import ArtistGallery from "./components/ArtistGallery";
-import Minter from "./components/Minter";
+import Minter from "./components/web3/Minter";
 
 const Main = styled.main`
   padding: clamp(0.5rem, 2rem, 4rem);
@@ -32,12 +32,15 @@ const Hero = styled.section`
   p {
     text-align: center;
   }
+  @media (max-width: ${(props) => props.theme.breakpoints.s}) {
+    padding: 0.5rem;
+  }
 `;
 
 const App = () => {
   return (
     <Layout>
-      <Nav />
+      <Nav focusMinter />
       <Main>
         <Hero>
           <h1>NFBeez</h1>
@@ -47,7 +50,7 @@ const App = () => {
             <br />
             <strong>Mint yours now.</strong>
           </p>
-          <Minter />
+          <Minter id="minter" />
         </Hero>
         <ArtistGallery />
       </Main>

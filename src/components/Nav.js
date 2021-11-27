@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import Logo from "../assets/1hiveFullLogo.svg";
-import { Button } from "./Button";
 import { navLinks } from "../data/navLinks";
+import WalletAddress from "./web3/WalletAddress";
 
 export const SocialLinks = styled.ul`
   display: flex;
@@ -59,7 +59,7 @@ const NavContainer = styled.nav`
   }
 `;
 
-const NavButton = styled(Button)`
+const Web3 = styled(WalletAddress)`
   margin-right: 2rem;
   @media (max-width: ${(props) => props.theme.breakpoints.s}) {
     margin-right: 1rem;
@@ -81,7 +81,7 @@ export default function Nav() {
             ))}
         </SocialLinks>
         <img src={Logo} alt="1hive-full-logo" />
-        <NavButton>Connect Wallet</NavButton>
+        <Web3 />
       </NavContainer>
     </header>
   );
