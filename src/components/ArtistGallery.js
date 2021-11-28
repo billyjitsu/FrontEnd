@@ -91,7 +91,6 @@ const ArtistLinks = styled.div`
 `;
 
 const ArtistGallery = () => {
-  console.log(artists[1].artist);
   return (
     <Gallery>
       <h2>Artists</h2>

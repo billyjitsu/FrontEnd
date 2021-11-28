@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import styled from "styled-components";
 import { Button } from "../Button";
+import NFT from "../../utils/NFT.json";
+import useStore from "../../store";
+import { contractAddress } from "../../data/contract";
 
 const Mint = styled.form`
   background: ${(p) => p.theme.colors.rainbow};
@@ -22,7 +25,7 @@ const Mint = styled.form`
 const MintNumInput = styled.input.attrs((props) => ({
   type: "number",
 }))`
-  max-width: 6rem;
+  max-width: 7rem;
   border-radius: 50px 0px 0px 50px;
   outline: none;
   padding: 0.75rem 1rem;
@@ -60,11 +63,13 @@ const MintButton = styled(Button)`
   }
 `;
 
-const Minter = () => {
-  const [mintTotal, setMintTotal] = useState(1);
+const Minter = ({ mintTotal }) => {
+  const addNFTNum = useStore((state) => state.addNFTsToMint);
+  const [numToMint, setNumToMint] = useState(1);
 
   const handleChange = (e) => {
-    setMintTotal(e.target.value);
+    setNumToMint(e.target.value);
+    addNFTNum(e.target.value);
   };
 
   return (
@@ -72,8 +77,10 @@ const Minter = () => {
       <MintNumInput
         placeholder="# of NFTs"
         min="1"
+        max="10"
         name="mintTotal"
         onChange={handleChange}
+        value={numToMint}
       ></MintNumInput>
       <MintButton>Mint NFTs</MintButton>
     </Mint>

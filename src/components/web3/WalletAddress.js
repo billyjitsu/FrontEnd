@@ -24,29 +24,12 @@ const WalletAddress = () => {
 
     checkForEthereum();
     checkForWalletAddress();
-  }, []);
+  }, [account]);
   //checks for wallet address saved
   const checkForWalletAddress = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    console.log(address, "fromz");
     if (address === "") {
-      let address = await window.ethereum.request({
-        method: "eth_requestAccounts",
-        params: [
-          {
-            eth_accounts: {},
-          },
-        ],
-      });
-      console.log("address", address);
-      setAccount(address[0]);
-      addAddress(address[0]);
-
-      const network = await provider.getNetwork();
-      const chainId = network.chainId;
-      if (chainId !== networkChainId) {
-        setWrongNetwork(true);
-      }
+      setAccount(null);
+      console.log("address", account);
     }
   };
   //connects user to metamask to add address
@@ -60,7 +43,9 @@ const WalletAddress = () => {
         },
       ],
     });
-    setAccount(address);
+    setAccount(address[0]);
+    addAddress(address[0]);
+
     const network = await provider.getNetwork();
     const chainId = network.chainId;
     if (chainId !== networkChainId) {
@@ -86,12 +71,12 @@ const WalletAddress = () => {
 
   return (
     <>
-      {!account ? (
+      {account === "" ? (
         <Button onClick={connectWallet}>Connect Wallet</Button>
       ) : wrongNetwork ? (
         <Button onClick={connectToXDai}>Connect to xDai</Button>
       ) : (
-        <Button onClick={scrollToTop}>Mint NFTs</Button>
+        <Button onClick={scrollToTop}>Disconnect Wallet</Button>
       )}
     </>
   );

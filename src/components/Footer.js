@@ -51,19 +51,21 @@ export default function Footer() {
   return (
     <FooterContainer>
       <DisappearOnMobile>
-        {navLinks.length !== 0 &&
-          navLinks.map((link) => (
-            <li key={navLinks.siteName}>
-              <a
-                href={link.url}
-                rel={"noreferrer"}
-                target="_blank"
-                key={navLinks.siteName}
-              >
-                {link.siteName}
-              </a>
-            </li>
-          ))}
+        <ul>
+          {navLinks.length !== 0 &&
+            navLinks.map((link, index) => (
+              <li key={link.siteName + index}>
+                <a
+                  href={link.url}
+                  rel={"noreferrer"}
+                  target="_blank"
+                  key={link.siteName}
+                >
+                  {link.siteName}
+                </a>
+              </li>
+            ))}
+        </ul>
       </DisappearOnMobile>
       <LinkContainer>
         <p>Built by</p>{" "}
