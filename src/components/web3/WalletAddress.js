@@ -16,45 +16,45 @@ const WalletAddress = () => {
   const networkChainId = 4; //currently set to rinkeby
   let address = useStore((state) => state?.walletAddress);
   const addAddress = useStore((state) => state.addWalletAddress);
+  const { ethereum } = window;
 
   //on page load, check if user has metamask, and check if there is wallet address saved
   useEffect(() => {
     const checkForEthereum = () => {
-      const { ethereum } = window;
       if (!ethereum) {
         alert(
           "Make sure you have metamask! Download at: https://metamask.io/download.html"
         );
         return;
       }
+      ethereum.on("accountsChanged", function (accounts) {
+        checkForWalletAddress();
+      });
     };
 
     checkForEthereum();
     checkForWalletAddress();
-  }, [account]);
+  }, []);
+
   //checks for wallet address saved
   const checkForWalletAddress = async () => {
     if (address === "") {
       setAccount(null);
-      console.log("address", account);
     }
   };
+
   //connects user to metamask to add address
   const connectWallet = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    let address = await window.ethereum.request({
-      method: "eth_requestAccounts",
-      params: [
-        {
-          eth_accounts: {},
-        },
-      ],
-    });
-    setAccount(address[0]);
-    addAddress(address[0]);
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    const accountFromMetamask = accounts[0];
+    // do something with new account here
+
+    setAccount(accountFromMetamask);
+    addAddress(accountFromMetamask);
     shortenAddress(account);
 
-    const network = await provider.getNetwork();
+    const network = provider.getNetwork();
     const chainId = network.chainId;
     if (chainId !== networkChainId) {
       setWrongNetwork(true);

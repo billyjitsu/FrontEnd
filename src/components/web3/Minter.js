@@ -6,6 +6,19 @@ import NFT from "../../utils/NFT.json";
 import useStore from "../../store";
 import { contractAddress } from "../../data/contract";
 
+const Notification = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: ${(p) => p.theme.colors.creamLightest + 40};
+  border-radius: 16px;
+  padding: 1rem;
+  p {
+    margin: 0 0 1rem 0;
+  }
+`;
+
 const Mint = styled.form`
   background: ${(p) => p.theme.colors.rainbow};
   border-radius: 50px;
@@ -66,24 +79,115 @@ const MintButton = styled(Button)`
 const Minter = ({ mintTotal }) => {
   const addNFTNum = useStore((state) => state.addNFTsToMint);
   const [numToMint, setNumToMint] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [nftMinted, setNFTMinted] = useState(false);
+  const [txn, setTxn] = useState();
 
   const handleChange = (e) => {
     setNumToMint(e.target.value);
     addNFTNum(e.target.value);
   };
 
+  useEffect(() => {
+    const setupEventListener = async () => {
+      try {
+        const { ethereum } = window;
+
+        if (ethereum) {
+          const provider = new ethers.providers.Web3Provider(ethereum);
+          const signer = provider.getSigner();
+          const connectedContract = new ethers.Contract(
+            contractAddress,
+            NFT.abi,
+            signer
+          );
+
+          // This will essentially "capture" our event when our contract throws it.
+          connectedContract.on("MintedNFT", (from) => {
+            setNFTMinted(true);
+          });
+        } else {
+          console.log("Ethereum object doesn't exist!");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    setupEventListener();
+  }, []);
+
+  const mintTokens = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const connectedContract = new ethers.Contract(
+          contractAddress,
+          NFT.abi,
+          signer
+        );
+
+        console.log("Going to pop wallet now to pay gas...");
+        let payment = String(numToMint * 0.1);
+        let totalGas = String(numToMint * 3000000);
+        let nftTxn = await connectedContract.mint(numToMint, {
+          gasLimit: totalGas,
+          value: ethers.utils.parseEther(payment),
+        });
+        setLoading(true);
+        console.log("Mining...please wait.");
+        await nftTxn.wait();
+        setLoading(false);
+        setTxn(nftTxn.hash);
+        console.log(
+          `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+        );
+      } else {
+        console.log("Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <Mint>
-      <MintNumInput
-        placeholder="# of NFTs"
-        min="1"
-        max="10"
-        name="mintTotal"
-        onChange={handleChange}
-        value={numToMint}
-      ></MintNumInput>
-      <MintButton>Mint NFTs</MintButton>
-    </Mint>
+    <>
+      {nftMinted && (
+        <Notification>
+          <p>Your NFTs have been minted!</p>
+          <a
+            href={`https://rinkeby.etherscan.io/tx/${txn}`}
+            rel={"noreferrer"}
+            target="_blank"
+          >
+            <Button>View transaction</Button>
+          </a>
+        </Notification>
+      )}
+      {loading && (
+        <Notification>
+          <p>
+            Your tokens are minting. Please wait a few minutes. This message
+            will be replaced with your transaction once minted.
+          </p>
+        </Notification>
+      )}
+      {!nftMinted && (
+        <Mint>
+          <MintNumInput
+            placeholder="# of NFTs"
+            min="1"
+            max="10"
+            name="mintTotal"
+            onChange={handleChange}
+            value={numToMint}
+          ></MintNumInput>
+          <MintButton onClick={mintTokens}>Mint NFTs</MintButton>
+        </Mint>
+      )}
+    </>
   );
 };
 
