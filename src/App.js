@@ -9,6 +9,7 @@ import Minter from "./components/web3/Minter";
 import useStore from "./store";
 import NFT from "./utils/NFT.json";
 import { contractAddress } from "./data/contract";
+import { HelperText } from "./components/HelperText";
 
 const Main = styled.main`
   padding: clamp(0.5rem, 2rem, 4rem);
@@ -40,16 +41,6 @@ const Hero = styled.section`
   @media (max-width: ${(props) => props.theme.breakpoints.s}) {
     padding: 0.5rem;
   }
-`;
-
-const HelperText = styled.p`
-  font-size: 0.8rem;
-  flex-basis: 100%;
-  ${(props) =>
-    props.error &&
-    css`
-      color: #b22222;
-    `}
 `;
 
 const App = () => {
