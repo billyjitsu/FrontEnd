@@ -69,7 +69,9 @@ const WalletAddress = () => {
         <Button onClick={connectWalletHandler}>Connect Wallet</Button>
       )}
       {wrongNetwork && <Button onClick={connectToXDai}>Connect to xDai</Button>}
-      {!wrongNetwork && <Address>{shortenedAddress}</Address>}
+      {!wrongNetwork && shortenedAddress && (
+        <Address>{shortenedAddress}</Address>
+      )}
     </>
   );
 };
