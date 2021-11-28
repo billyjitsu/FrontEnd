@@ -65,6 +65,8 @@ const WalletAddress = () => {
 
   return (
     <>
+    {(error && <a href="https://metamask.io/download.html"  rel={"noreferrer"}
+            target="_blank"><Button>Download Metamask</Button>)</a>}
       {!account && (
         <Button onClick={connectWalletHandler}>Connect Wallet</Button>
       )}
