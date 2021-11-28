@@ -1,10 +1,17 @@
 import { ethers } from "ethers";
+import styled from "styled-components";
 import { useState, useEffect } from "react";
 import useStore from "../../store";
 import { Button } from "../Button";
 
+const Address = styled.p`
+  font-size: 1.2rem;
+  margin-right: 1rem;
+`;
+
 const WalletAddress = () => {
   const [account, setAccount] = useState("");
+  const [shortenedAddress, setShortenedAddress] = useState();
   const [wrongNetwork, setWrongNetwork] = useState(false);
   const networkChainId = 4; //currently set to rinkeby
   let address = useStore((state) => state?.walletAddress);
@@ -45,6 +52,7 @@ const WalletAddress = () => {
     });
     setAccount(address[0]);
     addAddress(address[0]);
+    shortenAddress(account);
 
     const network = await provider.getNetwork();
     const chainId = network.chainId;
@@ -61,12 +69,11 @@ const WalletAddress = () => {
     setWrongNetwork(false);
   };
 
-  //scrolls user to the area where mint input is
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  const shortenAddress = () => {
+    let startChunk = address.substring(0, 5);
+    let endChunk = address.substring(address.length - 5);
+    setShortenedAddress(`${startChunk}...${endChunk}`);
+    console.log(shortenedAddress);
   };
 
   return (
@@ -76,7 +83,7 @@ const WalletAddress = () => {
       ) : wrongNetwork ? (
         <Button onClick={connectToXDai}>Connect to xDai</Button>
       ) : (
-        <Button onClick={scrollToTop}>Disconnect Wallet</Button>
+        <Address>{shortenedAddress}</Address>
       )}
     </>
   );
