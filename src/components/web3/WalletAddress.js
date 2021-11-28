@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import useStore from "../../store";
 import { Button } from "../Button";
-import { HelperText } from "../HelperText";
+import { networkChainId } from "../../data/network";
 
 const Address = styled.p`
   font-size: 1.2rem;
@@ -15,8 +15,6 @@ const WalletAddress = () => {
   const [account, setAccount] = useState();
   const [shortenedAddress, setShortenedAddress] = useState();
   const [wrongNetwork, setWrongNetwork] = useState(false);
-  const networkChainId = 4; //currently set to rinkeby
-  let address = useStore((state) => state?.walletAddress);
   const addAddress = useStore((state) => state.addWalletAddress);
 
   //on page load, check if user has metamask, and check if there is wallet address saved
