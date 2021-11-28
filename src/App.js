@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import Layout from "./components/Layout";
